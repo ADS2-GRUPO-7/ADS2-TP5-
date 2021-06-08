@@ -8,7 +8,7 @@ import {LoginComponent} from './components/login/login.component'
 import {PagoCuotaAlumnoComponent} from './components/pago-cuota-alumno/pago-cuota-alumno.component'
 import {PreceptorComponent} from './components/preceptor/preceptor.component'
 import {PrincipalComponent} from './components/principal/principal.component' 
-import { SecretarioComponent } from './components/secretario/secretario.component';
+import {SecretarioComponent } from './components/secretario/secretario.component';
 const routes: Routes = [
 
     { path: 'home' , component: PrincipalComponent },
