@@ -63,23 +63,20 @@ export class ArancelService {
                 resultadoObtenerTodo = new TablaDeAlumnosArancel()
                 resultadoObtenerTodo.Apellido = persona.apellido
                 resultadoObtenerTodo.Nombre = persona.nombre
-
+                
                 this.alumnoService.obtenerAlumnoPorId(arancel.idAlumno._id).subscribe(
                   (alumno) => {
                     /* console.log("entrandoooo "+alumno.idCurso.division) */
 
                     resultadoObtenerTodo.curso = alumno.idCurso.anio
                     resultadoObtenerTodo.division = alumno.idCurso.division
-                    
+
                     /* console.log(resultadoObtenerTodo) */
-
+                    console.log("ARANCEL")
+                    console.log(resultadoObtenerTodo);
+                    resultadoArray.push(resultadoObtenerTodo)
                   });
-                  resultadoArray.push(resultadoObtenerTodo)
-                /* console.log("ARANCEL")
-                console.log(ar); */
-                
               });
-
           });
         });
       /* console.log(resultadoArray) */
