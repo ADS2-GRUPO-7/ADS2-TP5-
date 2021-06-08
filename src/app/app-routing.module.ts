@@ -9,6 +9,7 @@ import {PagoCuotaAlumnoComponent} from './components/pago-cuota-alumno/pago-cuot
 import {PreceptorComponent} from './components/preceptor/preceptor.component'
 import {PrincipalComponent} from './components/principal/principal.component' 
 import {SecretarioComponent } from './components/secretario/secretario.component';
+import {ConstruccionComponent} from './components/construccion/construccion.component'
 const routes: Routes = [
 
     { path: 'home' , component: PrincipalComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'login' , component: LoginComponent },
     { path: 'constancia' , component: ConstanciaAlumnoRegularComponent },
     { path: 'pago' , component: PagoCuotaAlumnoComponent },
-
+    { path: 'construccion' , component: ConstruccionComponent },
+    { path: '**', pathMatch:'full',redirectTo:'construccion' }
 ];
 
 @NgModule({

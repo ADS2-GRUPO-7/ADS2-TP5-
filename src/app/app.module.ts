@@ -20,6 +20,7 @@ import { PreceptorComponent } from './components/preceptor/preceptor.component';
 import { SecretarioComponent } from './components/secretario/secretario.component';
 import { NavComponent } from './components/layout/nav/nav.component';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { ConstruccionComponent } from './components/construccion/construccion.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PrincipalComponent } from './components/principal/principal.component';
     PreceptorComponent,
     SecretarioComponent,
     NavComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    ConstruccionComponent
   ],
   imports: [
     BrowserModule,

@@ -9,15 +9,15 @@
 
 </head>
 <body id="bglogin">
-    <header><div class="navbar navbar-default over wide-area" role="navigation"> ... </div></header> 
+    <header><div class="navbar navbar-default over wide-area" role="navigation"> </div></header> 
     <div class="container" id="fondo">
         <div class="row">
             <div class="col-12">
-                    <div style="color: #FCA311;"><a href="menuprincipal.html" style="text-decoration: none; color: #FCA311;">Pagina Principal</a> ►<a href="" style="text-decoration: none;color: #FCA311;">  Entrar al sitio</a></div>
+                    <div style="color: #FCA311;"><a [routerLink]="['home']" style="text-decoration: none; color: #FCA311;">Pagina Principal</a> ►<a href="" style="text-decoration: none;color: #FCA311;">  Entrar al sitio</a></div>
                     <br><br>
                     <h1 style="color: white; text-shadow: yellow;">Acceder</h1>
                     <br>
-                    <div class="col-5" id="login">
+                    <div class="col-5" id="login" style="margin-bottom: 60px;">
                         <form>
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
