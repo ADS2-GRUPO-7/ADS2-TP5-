@@ -72,7 +72,9 @@ export class PagoCuotaAlumnoComponent implements OnInit {
 
   todosAlumnosArancel() {
     this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
+    this.tablaDeAlumnos = []
     this.tablaDeAlumnos = this.arancelService.obtenerTodosArancelesCompletos()
+    console.log("tablaa")
     console.log(this.tablaDeAlumnos)
   }
 

@@ -45,26 +45,40 @@ export class ArancelService {
   }
 
   public obtenerTodosArancelesCompletos(): Array<TablaDeAlumnosArancel> {
-    let resultadoObtenerTodo: TablaDeAlumnosArancel = new TablaDeAlumnosArancel()
-    let resultadoArray: Array<TablaDeAlumnosArancel> = []
+    let resultadoObtenerTodo: TablaDeAlumnosArancel
+    let resultadoArray: Array<TablaDeAlumnosArancel>
+    resultadoArray = []
     try {
       this.obtenerAranceles().subscribe(
-        (arancel) => {
-          /* console.log(arancel); */
-          arancel.forEach((element: { idAlumno: { idPersona: String; }; }) => {
+        (aranceles) => {
+          /* console.log(aranceles); */
+          aranceles.forEach((arancel: { idAlumno: { idPersona: String; _id: string; }; }) => {
             /* console.log(element.idAlumno.idPersona); */
-            this.personaService.obtenerPersonasID(element.idAlumno.idPersona).subscribe(
+            let ar = arancel
+
+            this.personaService.obtenerPersonasID(arancel.idAlumno.idPersona).subscribe(
               (persona) => {
-                /* console.log(persona); */
                 resultadoObtenerTodo = new TablaDeAlumnosArancel()
-                const resultado = persona
                 resultadoObtenerTodo.Apellido = persona.apellido
                 resultadoObtenerTodo.Nombre = persona.nombre
+
+                this.alumnoService.obtenerAlumnoPorId(arancel.idAlumno._id).subscribe(
+                  (alumno) => {
+                    /* console.log("elementoos") */
+
+                    resultadoObtenerTodo.curso = alumno.idCurso.anio
+                    resultadoObtenerTodo.division = alumno.idCurso.division
+                    /* console.log(resultadoObtenerTodo) */
+
+                  });
+                /* console.log("ARANCEL")
+                console.log(ar); */
                 resultadoArray.push(resultadoObtenerTodo)
               });
+
           });
         });
-      /* console.log(resultadoObtenerTodo) */
+      /* console.log(resultadoArray) */
     } catch (error) {
       console.log("error")
     }

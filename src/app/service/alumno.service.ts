@@ -18,6 +18,15 @@ export class AlumnoService {
     return this._http.get("http://localhost:3000/api/alumno/persona/"+id, httpOptions);
   }
 
+  obtenerAlumnoPorId(id:string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this._http.get("http://localhost:3000/api/alumno/"+id, httpOptions);
+  }
+
   obtenerAlumnos(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
