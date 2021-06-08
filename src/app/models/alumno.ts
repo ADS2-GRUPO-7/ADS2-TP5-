@@ -4,7 +4,6 @@ export class Alumno {
     idPersona!: string
     idCurso!: string
     idPersonaTutor!: string
-    idConstanciaAlumno!: string
 
     constructor(condicionRegular:boolean,idPersona:string,idCurso:string){
         this.condicionRegular=condicionRegular
