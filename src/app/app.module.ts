@@ -16,6 +16,8 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { PagoCuotaAlumnoComponent } from './components/pago-cuota-alumno/pago-cuota-alumno.component';
 import { ConstanciaAlumnoRegularComponent } from './components/constancia-alumno-regular/constancia-alumno-regular.component';
+import { PreceptorComponent } from './components/preceptor/preceptor.component';
+import { SecretarioComponent } from './components/secretario/secretario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ConstanciaAlumnoRegularComponent } from './components/constancia-alumno
     HeaderComponent,
     FooterComponent,
     PagoCuotaAlumnoComponent,
-    ConstanciaAlumnoRegularComponent
+    ConstanciaAlumnoRegularComponent,
+    PreceptorComponent,
+    SecretarioComponent
   ],
   imports: [
     BrowserModule,
