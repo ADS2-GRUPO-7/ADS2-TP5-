@@ -14,12 +14,12 @@ import { PersonaService } from 'src/app/service/persona.service';
 export class PagoCuotaAlumnoComponent implements OnInit {
 
   private alumnoParaTabla: TablaDeAlumnosArancel
-  private tablaDeAlumnos: Array<TablaDeAlumnosArancel>
+  tablaDeAlumnos: Array<TablaDeAlumnosArancel>
 
-  private dniBusqueda : string = '00000000'    // para llenar desde vista
-  private dniPago : string = '999999'        // para llenar desde vista
-  private metodoDePago: string = ''            // para llenar desde vista
-  private cuotasPagadas: string = '0'           // para llenar desde vistas
+  dniBusqueda : string = '66666666'    // para llenar desde vista
+  dniPago : string = '999999'        // para llenar desde vista
+  metodoDePago: string = ''            // para llenar desde vista
+  cuotasPagadas: string = '0'           // para llenar desde vistas
 
   private usuario: Usuario = new Usuario;
 
@@ -80,6 +80,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
 
   buscarPorDni() {
     this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
+    this.tablaDeAlumnos = []
     this.alumnoParaTabla = this.arancelService.obtenerAracnalPorDni(this.dniBusqueda)
     this.tablaDeAlumnos.push(this.alumnoParaTabla)
     console.log(this.tablaDeAlumnos)

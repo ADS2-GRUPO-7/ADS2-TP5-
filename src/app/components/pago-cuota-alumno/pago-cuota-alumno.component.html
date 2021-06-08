@@ -26,27 +26,27 @@
                         
                           <legend>Ingrese DNI de alumno</legend>
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="dniBusqueda">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarPorDni()">Buscar</button>
                           </div>
                     </form>
                     <table class="table">
                       <thead class="table-dark">
                         <tr>
+                          <th scope="col">#</th>
                           <th scope="col">Apellido</th>
                           <th scope="col">Nombre</th>
                           <th scope="col">Curso</th>
                           <th scope="col">Division</th>
-                          <th scope="col">Fecha Ultima Cuota Pagada</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Quiero</td>
-                          <td>Dormir</td>
-                          <td>1º</td>
-                          <td>A</td>
-                          <td>10/05/21</td>
+                        <tr *ngFor="let alumno of tablaDeAlumnos">
+                          <th scope="row">{{tablaDeAlumnos.indexOf(alumno)+1}}</th>
+                          <td>{{alumno.Apellido}}</td>
+                          <td>{{alumno.Nombre}}</td>
+                          <td>{{alumno.curso}}</td>
+                          <th>{{alumno.division}}</th>
                         </tr>
                       </tbody>
                     </table>                      
@@ -66,7 +66,7 @@
                           <legend>Formulario de pago</legend>
                           <div class="mb-3">
                             <label for="disabledTextInput" class="form-label">Dni del alumno</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" [(ngModel)]="dniPago">
                           </div>
                           <div class="mb-3">
                             <label for="disabledSelect" class="form-label">Metodo de Pago</label>
@@ -78,14 +78,14 @@
                           </div>
                           <div class="mb-3">
                             <label for="disabledSelect" class="form-label">Cuotas Pagadas</label>
-                            <select id="disabledSelect" class="form-select">
+                            <select id="disabledSelect" class="form-select" [(ngModel)]="cuotasPagadas">
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
                             </select>
                           </div>
                           <div style="text-align: center;">
-                              <button type="submit" class="btn btn-primary">Registrar</button>
+                              <button type="submit" class="btn btn-primary" (click)="generarPago()">Registrar</button>
                               <button type="submit" class="btn btn-primary">Limpiar</button>
                           </div>
                           
