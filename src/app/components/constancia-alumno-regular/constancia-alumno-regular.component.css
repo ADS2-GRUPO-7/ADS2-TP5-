@@ -18,28 +18,6 @@ body{
     height: 200px;
     filter: contrast(0.4)
 }
- /* LOGIN */
 
-#login{
-    color: white;
-    background-color: #14213daf;
-    padding: 20px;
-    border-radius: 10px;
-    
-}
 
-#bglogin{
-    background-image: url(../img/fondo1.jpg);
-    background-size: cover;
-}
-
-#footer{
-    text-align: center;
-    margin-top: 100px;
-    position: fixed;
-    bottom: 0; 
-    width: 100%;
-    background-color: black;
-    
-}
 /* https://coolors.co/000000-14213d-fca311-e5e5e5-ffffff */

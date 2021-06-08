@@ -18,6 +18,7 @@ import { PagoCuotaAlumnoComponent } from './components/pago-cuota-alumno/pago-cu
 import { ConstanciaAlumnoRegularComponent } from './components/constancia-alumno-regular/constancia-alumno-regular.component';
 import { PreceptorComponent } from './components/preceptor/preceptor.component';
 import { SecretarioComponent } from './components/secretario/secretario.component';
+import { NavComponent } from './components/layout/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SecretarioComponent } from './components/secretario/secretario.componen
     PagoCuotaAlumnoComponent,
     ConstanciaAlumnoRegularComponent,
     PreceptorComponent,
-    SecretarioComponent
+    SecretarioComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
