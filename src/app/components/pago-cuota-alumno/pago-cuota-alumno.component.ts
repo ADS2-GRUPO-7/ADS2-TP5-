@@ -17,7 +17,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
   tablaDeAlumnos: Array<TablaDeAlumnosArancel>
 
   dniBusqueda : string = '66666666'    // para llenar desde vista
-  dniPago : string = '999999'        // para llenar desde vista
+  dniPago : string = '000000'        // para llenar desde vista
   metodoDePago: string = ''            // para llenar desde vista
   cuotasPagadas: string = '0'           // para llenar desde vistas
 
@@ -41,20 +41,20 @@ export class PagoCuotaAlumnoComponent implements OnInit {
     /* this.usuario  = new Usuario() */
     arancel = new Arancel
     arancel.numeroDeCuota= this.cuotasPagadas
-    arancel.idUsuario= "60befb60d26d7cc144dcf86c"           //en futturo cambbiar
+    arancel.idUsuario= "60befb60d26d7cc144dcf86c"                        //en futturo cambbiar
     try {
       this.personaService.obtenerPersonasDNI(this.dniPago).subscribe(
         (persona) => {
-          console.log(persona[0]._id)
+          /* console.log("persona: "+persona[0]._id) */
           try {
             this.alumnoService.obtenerAlumnoPorIdPersona(persona[0]._id).subscribe(
               (alumno) => {
                 arancel.idAlumno=alumno[0]._id
-                console.log(arancel.idAlumno)
+                /* console.log("alumno: "+arancel.idAlumno) */
                 try {
                   this.arancelService.guardarArancel(arancel).subscribe(
                     (result) => {
-                      console.log(result)
+                      /* console.log(result) */
                       this.todosAlumnosArancel()
                     });
                 } catch (error) {
@@ -74,8 +74,8 @@ export class PagoCuotaAlumnoComponent implements OnInit {
     this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
     this.tablaDeAlumnos = []
     this.tablaDeAlumnos = this.arancelService.obtenerTodosArancelesCompletos()
-    console.log("tablaa")
-    console.log(this.tablaDeAlumnos)
+    /* console.log("tablaa")
+    console.log(this.tablaDeAlumnos) */
   }
 
   buscarPorDni() {
