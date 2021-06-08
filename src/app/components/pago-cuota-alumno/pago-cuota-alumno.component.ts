@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArancelService } from 'src/app/service/arancel.service';
 
 @Component({
   selector: 'app-pago-cuota-alumno',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagoCuotaAlumnoComponent implements OnInit {
 
-  constructor() { }
+  tablaDeAlumnos: any = {
+    "Apellido": String,
+    "Nombre": String,
+    "condicionRegular": String
+  }
+
+  constructor(private arancelService: ArancelService) {
+    arancelService.obtenerTodosArancelesCompletos()
+    let tablaDeAlumnos = arancelService.obtenerAracnalPorDni("999999")
+    /* console.log(tablaDeAlumnos.Apellido) */
+  }
 
   ngOnInit(): void {
   }
