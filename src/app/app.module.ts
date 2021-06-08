@@ -19,6 +19,7 @@ import { ConstanciaAlumnoRegularComponent } from './components/constancia-alumno
 import { PreceptorComponent } from './components/preceptor/preceptor.component';
 import { SecretarioComponent } from './components/secretario/secretario.component';
 import { NavComponent } from './components/layout/nav/nav.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NavComponent } from './components/layout/nav/nav.component';
     ConstanciaAlumnoRegularComponent,
     PreceptorComponent,
     SecretarioComponent,
-    NavComponent
+    NavComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
