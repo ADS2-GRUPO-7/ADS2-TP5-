@@ -3,18 +3,7 @@
     
 }
 
-
 body{
     background-color: #e5e5e5;
-}
-#menuprincipal p , h5{
-
-    
-    color: black;
-}
-
-#menu{
-    margin: auto;
-    height: 200px;
-    filter: contrast(0.4)
+    height: 800px;
 }
