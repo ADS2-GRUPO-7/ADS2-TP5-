@@ -12,10 +12,14 @@ import {SecretarioComponent } from './components/secretario/secretario.component
 import {ConstruccionComponent} from './components/construccion/construccion.component'
 const routes: Routes = [
 
-    { path: 'home' , component: PrincipalComponent },
+    { path: 'home' , component: PrincipalComponent, children: [
+      { path: 'login' , component: LoginComponent },
+    ] 
+  
+    },
     { path: 'secretario' , component: SecretarioComponent },
     { path: 'preceptor' , component: PreceptorComponent },
-    { path: 'login' , component: LoginComponent },
+ 
     { path: 'constancia' , component: ConstanciaAlumnoRegularComponent },
     { path: 'pago' , component: PagoCuotaAlumnoComponent },
     { path: 'construccion' , component: ConstruccionComponent },
