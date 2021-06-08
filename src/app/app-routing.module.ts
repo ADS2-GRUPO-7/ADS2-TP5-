@@ -15,7 +15,8 @@ const routes: Routes = [
     { path: 'secretario' , component: SecretarioComponent },
     { path: 'preceptor' , component: PreceptorComponent },
     { path: 'login' , component: LoginComponent },
-
+    { path: 'constancia' , component: ConstanciaAlumnoRegularComponent },
+    { path: 'pago' , component: PagoCuotaAlumnoComponent },
 
 ];
 
