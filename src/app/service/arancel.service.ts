@@ -47,7 +47,6 @@ export class ArancelService {
   }
 
   public obtenerTodosArancelesCompletos(): Array<TablaDeAlumnosArancel> {
-    let resultadoObtenerTodo: TablaDeAlumnosArancel
     let resultadoArray: Array<TablaDeAlumnosArancel>
     resultadoArray = []
     try {
@@ -57,32 +56,22 @@ export class ArancelService {
           aranceles.forEach((arancel: { idAlumno: { idPersona: String; _id: string; }; }) => {
             /* console.log(element.idAlumno.idPersona); */
             let ar = arancel
-
             this.personaService.obtenerPersonasID(arancel.idAlumno.idPersona).subscribe(
               (persona) => {
-                resultadoObtenerTodo = new TablaDeAlumnosArancel()
-                resultadoObtenerTodo.Apellido = persona.apellido
-                resultadoObtenerTodo.Nombre = persona.nombre
-                
                 this.alumnoService.obtenerAlumnoPorId(arancel.idAlumno._id).subscribe(
                   (alumno) => {
                     /* console.log("entrandoooo "+alumno.idCurso.division) */
-
-                    resultadoObtenerTodo.curso = alumno.idCurso.anio
-                    resultadoObtenerTodo.division = alumno.idCurso.division
-
-                    /* console.log(resultadoObtenerTodo) */
-                    console.log("ARANCEL")
-                    console.log(resultadoObtenerTodo);
-                    resultadoArray.push(resultadoObtenerTodo)
+                    resultadoArray.push({Apellido:persona.apellido,"Nombre":persona.nombre,curso:alumno.idCurso.anio,division:alumno.idCurso.division,condicionRegular:"true"})
                   });
               });
+              
           });
         });
-      /* console.log(resultadoArray) */
+      
     } catch (error) {
       console.log("error")
     }
+/*     console.log(resultadoArray) */
     return resultadoArray
   }
 
