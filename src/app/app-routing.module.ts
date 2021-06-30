@@ -10,13 +10,15 @@ import {PreceptorComponent} from './components/preceptor/preceptor.component'
 import {PrincipalComponent} from './components/principal/principal.component' 
 import {SecretarioComponent } from './components/secretario/secretario.component';
 import {ConstruccionComponent} from './components/construccion/construccion.component'
+import { GenerarUsuarioComponent } from './components/generar-usuario/generar-usuario.component';
 const routes: Routes = [
 
     { path: '' , component: PrincipalComponent },
      { path: 'login' , component: LoginComponent },
     { path: 'secretario' , component: SecretarioComponent },
     { path: 'preceptor' , component: PreceptorComponent },
- 
+
+    { path: 'usuario' , component: GenerarUsuarioComponent },
     { path: 'constancia' , component: ConstanciaAlumnoRegularComponent },
     { path: 'pago' , component: PagoCuotaAlumnoComponent },
     { path: 'construccion' , component: ConstruccionComponent },

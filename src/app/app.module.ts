@@ -21,6 +21,7 @@ import { SecretarioComponent } from './components/secretario/secretario.componen
 import { NavComponent } from './components/layout/nav/nav.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ConstruccionComponent } from './components/construccion/construccion.component';
+import { GenerarUsuarioComponent } from './components/generar-usuario/generar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConstruccionComponent } from './components/construccion/construccion.co
     SecretarioComponent,
     NavComponent,
     PrincipalComponent,
-    ConstruccionComponent
+    ConstruccionComponent,
+    GenerarUsuarioComponent
   ],
   imports: [
     BrowserModule,
