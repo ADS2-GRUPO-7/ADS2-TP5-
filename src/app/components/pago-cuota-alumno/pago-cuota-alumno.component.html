@@ -11,108 +11,86 @@
 <body style="background-color: #e5e5e5">    
       <br>
    <div class="container">
-     <div class="row">
-        <div class="col-8">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Consultar
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <form>
-                        
-                          <legend>Ingrese DNI de alumno</legend>
-                          <div class="input-group mb-3">
-                            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="dniBusqueda" [(ngModel)]="dniBusqueda" value="Otto" required>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarPorDni()">Buscar</button>
-                          </div>
-                    </form>
-                    <table class="table">
-                      <thead class="table-dark">
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Apellido</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Curso</th>
-                          <th scope="col">Division</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let alumno of tablaDeAlumnos">
-                          <th scope="row">{{tablaDeAlumnos.indexOf(alumno)+1}}</th>
-                          <td>{{alumno.Apellido}}</td>
-                          <td>{{alumno.Nombre}}</td>
-                          <td>{{alumno.curso}}</td>
-                          <th>{{alumno.division}}</th>
-                        </tr>
-                      </tbody>
-                    </table>                      
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Registrar nuevo pago
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <form>
-                        
-                          <legend>Formulario de pago</legend>
-                          <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Dni del alumno</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" name="dniPago" [(ngModel)]="dniPago" value="Otto" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="disabledSelect" class="form-label">Metodo de Pago</label>
-                            <select id="disabledSelect" class="form-select">
-                              <option>Efectivo</option>
-                              <option>Tarjeta</option>
-                              <option>Transferencia</option>
-                            </select>
-                          </div>
-                          <div class="mb-3">
-                            <label for="disabledSelect" class="form-label">Cuotas Pagadas</label>
-                            <select id="disabledSelect" class="form-select" name="cuotasPagadas" [(ngModel)]="cuotasPagadas">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                            </select>
-                          </div>
-                          <div style="text-align: center;">
-                              <button type="submit" class="btn btn-primary" (click)="generarPago()">Registrar</button>
-                              <button type="submit" class="btn btn-primary">Limpiar</button>
-                          </div>
-                          
-                       
-                      </form>
-        </div>
-              </div>
-              
-            </div>  
-
-          </div>         
-          
-        </div>
-            <div class="col-4">
-                  <div class="list-group">
-
-                    <a href="#" class="list-group-item list-group-item-action">Subir Documentos</a>
-                    <a href="#" class="list-group-item list-group-item-action">Asistencia</a>
-                    <a href="#" class="list-group-item list-group-item-action">Generar Constancias</a>
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Pagos</a>
-                  </div>
-            </div>
     
-       </div>
-   </div>
-         
-              
+
+          <form>
+ <div class="row">
+        <div class="col-8">                        
+            <legend>Ingrese DNI de alumno</legend>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="dniBusqueda" [(ngModel)]="dniBusqueda" value="Otto" required>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarPorDni()">Buscar</button>
+            </div>
+<div class="row">
+            <div class="col-6">
+              <label for="exampleInputEmail1" class="form-label">Nombre</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled readonly>
+            </div>
+
+            <div class="col-6">
+              <label for="exampleInputPassword1" class="form-label">Apellido</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+            </div>
+</div>
+<div class="row">
+            <div class="col-6">
+              <label for="exampleInputPassword1" class="form-label">Curso</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+            </div>
+
+            <div class="col-6">
+              <label for="exampleInputPassword1" class="form-label">Division</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+            </div>
+</div>
+<div class="row">
+            <div class="col-6">
+              <label for="exampleInputPassword1" class="form-label">Meses a pagar </label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <div class="col-6">
+              <label for="exampleInputPassword1" class="form-label">Metodo de pago </label><br>
+              <select name="" id="exampleInputPassword1">
+                <option value="">Efectivo</option>
+                <option value="">Tarjeta</option>
+                <option value="">Transferencia Bancaria</option>
+              </select>
+            </div>
+</div>
+<br>
+        <div class="col-12" style="text-align: center;"> 
+          <button type="reset" class="btn btn-success">Limpiar</button> <br><br>
+          <button type="submit" class="btn btn-success">Generar Pago</button>
+        </div>
+  </div>
+<div class="col-4">
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Arancel</div>
+    <div class="card-body">
+          <label for="">Arancel</label>
+    </div>
+  </div>
+
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Ultimo Mes Pegado</div>
+    <div class="card-body">
+          <label for="">Arancel</label>
+    </div>
+  </div>
+
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Subtotal</div>
+    <div class="card-body">
+          <label for="">Arancel</label>
+    </div>
+  </div>
+</div>  
+ </div>      
+          </form>
+        
+     
+   </div>          
 
 </body>
 </html>
