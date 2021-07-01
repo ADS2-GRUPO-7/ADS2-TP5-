@@ -11,6 +11,8 @@ import {PrincipalComponent} from './components/principal/principal.component'
 import {SecretarioComponent } from './components/secretario/secretario.component';
 import {ConstruccionComponent} from './components/construccion/construccion.component'
 import { GenerarUsuarioComponent } from './components/generar-usuario/generar-usuario.component';
+import {GestionarAsistenciaAlumnoComponent} from './components/gestionar-asistencia-alumno/gestionar-asistencia-alumno.component'
+
 const routes: Routes = [
 
     { path: '' , component: PrincipalComponent },
@@ -21,6 +23,7 @@ const routes: Routes = [
     { path: 'usuario' , component: GenerarUsuarioComponent },
     { path: 'constancia' , component: ConstanciaAlumnoRegularComponent },
     { path: 'pago' , component: PagoCuotaAlumnoComponent },
+    { path: 'asistenciaAlumno' , component: GestionarAsistenciaAlumnoComponent },
     { path: 'construccion' , component: ConstruccionComponent },
     { path: '**', pathMatch:'full',redirectTo:'construccion' }
 ];

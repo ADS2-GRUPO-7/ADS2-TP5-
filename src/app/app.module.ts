@@ -22,6 +22,7 @@ import { NavComponent } from './components/layout/nav/nav.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ConstruccionComponent } from './components/construccion/construccion.component';
 import { GenerarUsuarioComponent } from './components/generar-usuario/generar-usuario.component';
+import { GestionarAsistenciaAlumnoComponent } from './components/gestionar-asistencia-alumno/gestionar-asistencia-alumno.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { GenerarUsuarioComponent } from './components/generar-usuario/generar-us
     NavComponent,
     PrincipalComponent,
     ConstruccionComponent,
-    GenerarUsuarioComponent
+    GenerarUsuarioComponent,
+    GestionarAsistenciaAlumnoComponent
   ],
   imports: [
     BrowserModule,
