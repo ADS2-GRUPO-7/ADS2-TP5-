@@ -21,7 +21,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
   curso: any
 
   meses: Array<String> = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
-    "septiembre", "octubre", "noviembre", "diciembre", "te pasaste we", ""]
+    "septiembre", "octubre", "noviembre", "diciembre", ""]
 
   dniBusqueda: string = '66666666'    // para llenar desde vista
   dniPago: string = '000000'        // para llenar desde vista
@@ -29,7 +29,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
   mesesAPagar: number = 1
 
   subtotal: number = 0
-  ultimoMesPagado: String = ''
+  ultimoMesPagado!: String
 
   private usuario: Usuario = new Usuario;
 
@@ -45,18 +45,19 @@ export class PagoCuotaAlumnoComponent implements OnInit {
 
   generarPago() {
 
-    if (this.mesesAPagar >= 1) {
+    console.log(Number(this.mesesAPagar) + Number(this.meses.indexOf(this.ultimoMesPagado)))
+    if (this.mesesAPagar >= 1 && (Number(this.mesesAPagar) + Number(this.meses.indexOf(this.ultimoMesPagado) + 1) <= 12)) {
+      let pago: any = {}
+
+      pago.fecha = new Date()
+
+
       for (let index = 1; index <= this.mesesAPagar; index++) {
-
-        let pago: any = {}
-        /* this.usuario  = new Usuario() */
-
-        pago.fecha = new Date()
-        /* pago.numeroDeCuota = this.mesesAPagar */
 
         pago.numeroDeCuota = this.meses.indexOf(this.ultimoMesPagado) + 1 + index
 
-        pago.idUsuario = "60befb60d26d7cc144dcf86c"                        //en futturo cambbiar
+
+        pago.idUsuario = "60befb60d26d7cc144dcf86c"
 
         pago.idAlumno = this.alumno._id
 
@@ -65,7 +66,10 @@ export class PagoCuotaAlumnoComponent implements OnInit {
           this.arancelService.guardarArancel(pago).subscribe(
             (result) => {
               console.log(result)
-              /* console.log(pago) */
+
+              if(index == this.mesesAPagar){
+                this.buscarPorDni()
+              }
             });
         } catch (error) {
           console.log("error al guardar pago")
@@ -73,7 +77,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
       }
     } else {
       console.log("ERRORR mal ingresado")
-      this.toarService.error('No se puede ingresar un numero negativo o 0', 'Aranceles')
+      this.toarService.error('No se puede ingresar un numero negativo o 0, ni pagar mas de 1 año', 'Aranceles')
     }
   }
 
@@ -82,7 +86,6 @@ export class PagoCuotaAlumnoComponent implements OnInit {
       this.personaService.obtenerPersonasDNI(this.dniBusqueda).subscribe(
         (persona) => {
           this.persona = persona[0]
-          /* console.log("persona: "+persona[0]._id) */
           console.log(persona[0])
           if (persona) {
             try {
@@ -91,8 +94,7 @@ export class PagoCuotaAlumnoComponent implements OnInit {
                   this.alumno = alumno[0]
                   console.log(this.alumno)
                   this.curso = this.alumno.idCurso
-                  /* console.log("cursoooooooo")
-                  console.log(this.curso) */
+
                   this.ultimoMes()
                 });
             } catch (error) {
@@ -131,9 +133,10 @@ export class PagoCuotaAlumnoComponent implements OnInit {
       this.arancelService.obtenerAranceles().subscribe(
         (result) => {
           console.log(result)
-          result.forEach((element: { idAlumno: any; numeroDeCuota: number; }) => {
+          result.forEach((element: { idAlumno: string; numeroDeCuota: number; }) => {
             if (element.idAlumno == this.alumno._id) {
               this.ultimoMesPagado = this.meses[element.numeroDeCuota - 1]
+              console.log(element.idAlumno)
             }
           });
         });
