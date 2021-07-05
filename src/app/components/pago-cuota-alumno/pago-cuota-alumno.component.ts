@@ -4,6 +4,7 @@ import { TablaDeAlumnosArancel } from 'src/app/models/tabla-de-alumnos-arancel';
 import { Usuario } from 'src/app/models/usuario';
 import { AlumnoService } from 'src/app/service/alumno.service';
 import { ArancelService } from 'src/app/service/arancel.service';
+import { CursoService } from 'src/app/service/curso.service';
 import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
@@ -13,22 +14,24 @@ import { PersonaService } from 'src/app/service/persona.service';
 })
 export class PagoCuotaAlumnoComponent implements OnInit {
 
-  private alumnoParaTabla: TablaDeAlumnosArancel
-  tablaDeAlumnos: Array<TablaDeAlumnosArancel>
 
-  dniBusqueda : string = '66666666'    // para llenar desde vista
-  dniPago : string = '000000'        // para llenar desde vista
+  persona: any
+  alumno: any
+  curso: any
+
+  dniBusqueda: string = '66666666'    // para llenar desde vista
+  dniPago: string = '000000'        // para llenar desde vista
   metodoDePago: string = ''            // para llenar desde vista
-  cuotasPagadas: string = '0'           // para llenar desde vistas
+  mesesAPagar: number = 0
+
+  subtotal: number = 0
+  ultimoMesPagado: string = ''
 
   private usuario: Usuario = new Usuario;
 
-  constructor(private arancelService: ArancelService, private personaService:PersonaService,
-    private alumnoService:AlumnoService) {
-    this.alumnoParaTabla = new TablaDeAlumnosArancel()
-    this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
+  constructor(private arancelService: ArancelService, private personaService: PersonaService,
+    private alumnoService: AlumnoService, private cursoService: CursoService) {
 
-    this.todosAlumnosArancel()
     /* this.buscarPorDni() */
     /* this.generarPago() */
   }
@@ -36,53 +39,67 @@ export class PagoCuotaAlumnoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  generarPago(){
-    let arancel :Arancel
+  generarPago() {
+    let pago: any = {}
     /* this.usuario  = new Usuario() */
-    arancel = new Arancel
-    arancel.numeroDeCuota= this.cuotasPagadas
-    arancel.idUsuario= "60befb60d26d7cc144dcf86c"                        //en futturo cambbiar
+
+    pago.fecha = new Date()
+    /* pago.numeroDeCuota = this.mesesAPagar */
+
+    pago.numeroDeCuota = 'Julio'
+
+    pago.idUsuario = "60befb60d26d7cc144dcf86c"                        //en futturo cambbiar
+
+    pago.idAlumno = this.alumno._id
     try {
-      this.personaService.obtenerPersonasDNI(this.dniPago).subscribe(
-        (persona) => {
-          /* console.log("persona: "+persona[0]._id) */
-          try {
-            this.alumnoService.obtenerAlumnoPorIdPersona(persona[0]._id).subscribe(
-              (alumno) => {
-                arancel.idAlumno=alumno[0]._id
-                /* console.log("alumno: "+arancel.idAlumno) */
-                try {
-                  this.arancelService.guardarArancel(arancel).subscribe(
-                    (result) => {
-                      /* console.log(result) */
-                      this.todosAlumnosArancel()
-                    });
-                } catch (error) {
-                  console.log("error al guardar")
-                }
-              });
-          } catch (error) {
-            console.log("error al guardar")
-          }
+      this.arancelService.guardarArancel(pago).subscribe(
+        (result) => {
+          console.log(result)
+          /* console.log(pago) */
         });
     } catch (error) {
-      console.log("error al guardar")
+      console.log("error al guardar pago")
     }
   }
 
-  todosAlumnosArancel() {
-    this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
-    this.tablaDeAlumnos = []
-    this.tablaDeAlumnos = this.arancelService.obtenerTodosArancelesCompletos()
-    /* console.log("tablaa")
-    console.log(this.tablaDeAlumnos) */
+  buscarPorDni() {
+    try {
+      this.personaService.obtenerPersonasDNI(this.dniBusqueda).subscribe(
+        (persona) => {
+          this.persona = persona[0]
+          /* console.log("persona: "+persona[0]._id) */
+          console.log(this.persona)
+          try {
+            this.alumnoService.obtenerAlumnoPorIdPersona(persona[0]._id).subscribe(
+              (alumno) => {
+                this.alumno = alumno[0]
+                console.log(this.alumno)
+                this.curso = this.alumno.idCurso
+                /* console.log("cursoooooooo")
+                console.log(this.curso) */
+                this.ultimoMes()
+              });
+          } catch (error) {
+            console.log("error al obtener alumno")
+          }
+        });
+    } catch (error) {
+      console.log("error al obtener persona")
+    }
   }
 
-  buscarPorDni() {
-    this.tablaDeAlumnos = new Array<TablaDeAlumnosArancel>()
-    this.tablaDeAlumnos = []
-    this.alumnoParaTabla = this.arancelService.obtenerAracnalPorDni(this.dniBusqueda)
-    this.tablaDeAlumnos.push(this.alumnoParaTabla)
-    console.log(this.tablaDeAlumnos)
+  obtenerSubTotal() {
+    try {
+      if (this.curso.arancel) {
+        this.subtotal = this.mesesAPagar * this.curso.arancel
+        console.log(this.subtotal)
+      }
+    } catch (error) {
+      console.log("algo malo")
+    }
+  }
+
+  ultimoMes() {
+
   }
 }

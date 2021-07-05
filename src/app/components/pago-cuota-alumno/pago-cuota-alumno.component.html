@@ -1,96 +1,94 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>   
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600&display=swap" rel="stylesheet"> 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-color: #e5e5e5">    
-      <br>
-   <div class="container">
-    
 
-          <form>
- <div class="row">
-        <div class="col-8">                        
-            <legend>Ingrese DNI de alumno</legend>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" name="dniBusqueda" [(ngModel)]="dniBusqueda" value="Otto" required>
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarPorDni()">Buscar</button>
-            </div>
-<div class="row">
+<body style="background-color: #e5e5e5">
+  <br>
+  <div class="container">
+
+
+    <form>
+      <div class="row">
+        <div class="col-8">
+          <legend>Ingrese DNI de alumno</legend>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
+              name="dniBusqueda" [(ngModel)]="dniBusqueda" value="Otto" required>
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+              (click)="buscarPorDni()">Buscar</button>
+          </div>
+          <div class="row">
             <div class="col-6">
               <label for="exampleInputEmail1" class="form-label">Nombre</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled readonly>
+              <input type="text" class="form-control" value="Nombre" id="exampleInputEmail1"
+                aria-describedby="emailHelp" disabled readonly name='persona.nombre' [(ngModel)]="persona.nombre">
             </div>
 
             <div class="col-6">
               <label for="exampleInputPassword1" class="form-label">Apellido</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+              <input type="text" class="form-control" value="Apellido" id="exampleInputPassword1" disabled readonly name='persona.apellido' [(ngModel)]="persona.apellido">
             </div>
-</div>
-<div class="row">
+          </div>
+          <div class="row">
             <div class="col-6">
               <label for="exampleInputPassword1" class="form-label">Curso</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+              <input type="text" class="form-control" value="Curso" id="exampleInputPassword1" disabled readonly name='curso.anio' [(ngModel)]="curso.anio">
             </div>
 
             <div class="col-6">
               <label for="exampleInputPassword1" class="form-label">Division</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" disabled readonly>
+              <input type="text" class="form-control" value="Division" id="exampleInputPassword1" disabled readonly name='curso.division' [(ngModel)]="curso.division">
             </div>
-</div>
-<div class="row">
+          </div>
+          <div class="row">
             <div class="col-6">
-              <label for="exampleInputPassword1" class="form-label">Meses a pagar </label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <label for="exampleInputPassword1" class="form-label" >Meses a pagar </label>
+              <input type="text" class="form-control" value="0" id="exampleInputPassword1" name='mesesAPagar' [(ngModel)]="mesesAPagar" (ngModelChange)='obtenerSubTotal()'>
             </div>
 
-            <div class="col-6">
-              <label for="exampleInputPassword1" class="form-label">Metodo de pago </label><br>
-              <select name="" id="exampleInputPassword1">
-                <option value="">Efectivo</option>
-                <option value="">Tarjeta</option>
-                <option value="">Transferencia Bancaria</option>
-              </select>
-            </div>
-</div>
-<br>
-        <div class="col-12" style="text-align: center;"> 
-          <button type="reset" class="btn btn-success">Limpiar</button> <br><br>
-          <button type="submit" class="btn btn-success">Generar Pago</button>
+          </div>
+          <br>
+          <div class="col-12" style="text-align: center;">
+            <button type="reset" class="btn btn-success">Limpiar</button> <br><br>
+            <button type="submit" class="btn btn-success" (click)="generarPago()">Generar Pago</button>
+          </div>
         </div>
-  </div>
-<div class="col-4">
-  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-    <div class="card-header">Arancel</div>
-    <div class="card-body">
-          <label for="">Arancel</label>
-    </div>
-  </div>
+        <div class="col-4">
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">Arancel</div>
+            <div class="card-body">
+              <label for="">{{curso.arancel}}</label>
+            </div>
+          </div>
 
-  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-    <div class="card-header">Ultimo Mes Pegado</div>
-    <div class="card-body">
-          <label for="">Arancel</label>
-    </div>
-  </div>
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">Ultimo Mes Pegado</div>
+            <div class="card-body">
+              <label for="">{{ultimoMesPagado}}</label>
+            </div>
+          </div>
 
-  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-    <div class="card-header">Subtotal</div>
-    <div class="card-body">
-          <label for="">Arancel</label>
-    </div>
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">Subtotal</div>
+            <div class="card-body">
+              <label for="">{{subtotal}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
   </div>
-</div>  
- </div>      
-          </form>
-        
-     
-   </div>          
 
 </body>
+
 </html>

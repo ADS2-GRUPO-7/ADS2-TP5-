@@ -17,4 +17,13 @@ export class CursoService {
     };
     return this._http.get("http://localhost:3000/api/curso/", httpOptions);
   }
+
+  obtenerCurso(id:string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this._http.get("http://localhost:3000/api/curso/"+id, httpOptions);
+  }
 }
