@@ -16,35 +16,7 @@ export class ArancelService {
     private personaService: PersonaService, private alumnoService: AlumnoService) { }
 
 
-  public obtenerAracnalPorDni(dni: String): TablaDeAlumnosArancel {
-    let resultadoPorDNI: TablaDeAlumnosArancel = new TablaDeAlumnosArancel()
-    try {
-      this.personaService.obtenerPersonasDNI(dni).subscribe(
-        (persona) => {
-          /* console.log(result); */
-          const resultado = persona
-          /* console.log(persona[0]._id) */
-          try {
-            this.alumnoService.obtenerAlumnoPorIdPersona(persona[0]._id).subscribe(
-              (alumno) => {
-                console.log(alumno);
-                /* const resultado = alumno */
-                resultadoPorDNI.Apellido = persona[0].apellido
-                resultadoPorDNI.Nombre = persona[0].nombre
-                resultadoPorDNI.condicionRegular = alumno[0].condicionRegular
-                resultadoPorDNI.curso = alumno[0].idCurso.anio
-                resultadoPorDNI.division = alumno[0].idCurso.division
-                /* console.log(resultadoPorDNI) */
-              });
-          } catch (error) {
-            console.log("vacio")
-          }
-        });
-    } catch (error) {
-      console.log("error, no se encontro nada")
-    }
-    return resultadoPorDNI
-  }
+  
 
   public obtenerTodosArancelesCompletos(): Array<TablaDeAlumnosArancel> {
     let resultadoArray: Array<TablaDeAlumnosArancel>
