@@ -50,24 +50,18 @@ export class PagoCuotaAlumnoComponent implements OnInit {
       let pago: any = {}
 
       pago.fecha = new Date()
-
-
       for (let index = 1; index <= this.mesesAPagar; index++) {
-
         pago.numeroDeCuota = this.meses.indexOf(this.ultimoMesPagado) + 1 + index
 
-
-        pago.idUsuario = "60befb60d26d7cc144dcf86c"
-
+        pago.idUsuario = "60befb60d26d7cc144dcf86c"      //id usuario
         pago.idAlumno = this.alumno._id
-
         pago.monto = this.curso.arancel
         try {
           this.arancelService.guardarArancel(pago).subscribe(
             (result) => {
               console.log(result)
 
-              if(index == this.mesesAPagar){
+              if (index == this.mesesAPagar) {
                 this.buscarPorDni()
               }
             });
